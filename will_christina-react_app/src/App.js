@@ -10,7 +10,7 @@ class App extends Component {
     bookFilter: "",
     printFilter: "",
     bookResults: this.props.mockBookResults,
-    searchQuery: 'javascript'
+    searchQuery: "javascript"
   };
 
   handleSubmit = (searchSubmitEvent, searchInput) => {
@@ -25,7 +25,7 @@ class App extends Component {
     fetch(fullSearchUrl)
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network Error!  Try Again!');
+          throw new Error("Network Error!  Try Again!");
         }
         return response;
       })
@@ -82,13 +82,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Search 
-          handleSubmit = {this.handleSubmit}          
+        <Search handleSubmit={this.handleSubmit} />
+        <Filter
+          handlePrintType={this.handlePrintType}
+          handleBookType={this.handleBookType}
         />
-        <List
-          bookResults = {bookResults}
-        />
-        
+        <List bookResults={bookResults} />
       </div>
     );
   }
