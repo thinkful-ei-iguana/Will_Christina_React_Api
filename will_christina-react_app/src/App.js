@@ -43,7 +43,7 @@ class App extends Component {
       });
   };
 
-  fullQuery = () => {
+  fullQuery = (baseUrl, searchInput, key) => {
     const { bookFilter, printFilter } = this.state;
     let fullQuery;
     if (searchInput !== "") {
