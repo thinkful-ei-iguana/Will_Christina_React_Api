@@ -4,7 +4,13 @@ import React, { Component } from 'react';
 class Search extends Component {
 
     state = {
-        searchInput: [],
+        searchInput: '',
+    }
+
+    handleInput = (searchEvent) => {
+        this.setState({
+            searchInput: searchEvent.target.value
+        });
     }
 
     render() {
@@ -18,9 +24,3 @@ class Search extends Component {
         )
     }
 }
-
-
-
-
-
-export default Search;
