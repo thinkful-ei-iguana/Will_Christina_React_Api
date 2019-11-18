@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./Header";
 import Search from "./Search";
+import Filter from "./Filter";
+import List from "./List";
 
 class App extends Component {
   state = {
     bookFilter: "",
-    printFilter: ""
+    printFilter: "",
+    bookResults: this.props.mockBookResults,
+    searchQuery: 'javascript'
   };
 
   handleSubmit = (searchSubmitEvent, searchInput) => {
@@ -18,7 +22,25 @@ class App extends Component {
     const baseUrl = "https://www.googleapis.com/books/v1/volumes";
     const key = "AIzaSyAYDJhq65jOJdEWKmAaCQSIUaxDdaMMCf8";
     const fullSearchUrl = this.fullQuery(baseUrl, searchInput, key);
-    fetch(fullSearchUrl);
+    fetch(fullSearchUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network Error!  Try Again!');
+        }
+        return response;
+      })
+      .then(response => response.json())
+      .then(bookResultsObj => {
+        this.setState({
+          bookResults: bookResultsObj,
+          error: null
+        });
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message
+        });
+      });
   };
 
   fullQuery = () => {

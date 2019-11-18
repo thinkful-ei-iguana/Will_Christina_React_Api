@@ -14,13 +14,24 @@ class Search extends Component {
     }
 
     render() {
+        const { handleSubmit } = this.props;
+        const { searchInput } = this.state;
 
        return(
            <div>
-               Search
-
+               <form className='search-form' 
+               onSubmit={ submitEvent => handleSubmit(submitEvent, searchInput)}>
+                   <input
+                    type='text' 
+                    placeholder='Search Here'
+                    name='search'
+                    onChange={ this.handleInput }/>
+                <button type='submit'>Submit</button>
+               </form>
            </div> 
 
         )
     }
 }
+
+export default Search;
