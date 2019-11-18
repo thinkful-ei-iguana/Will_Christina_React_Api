@@ -77,10 +77,18 @@ class App extends Component {
   };
 
   render() {
+    const { bookResults } = this.state;
+
     return (
       <div className="App">
         <Header />
-        <Search />
+        <Search 
+          handleSubmit = {this.handleSubmit}          
+        />
+        <List
+          bookResults = {bookResults}
+        />
+        
       </div>
     );
   }
